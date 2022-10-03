@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{master.html}">
+<head>
+<meta charset="utf-8">
+<title>Inicio</title>
+</head>
+<body>
+
+  <div layout:fragment="content">
+	<div class="bg-light p-5 rounded">
+	   <h1 class="display-1 text-dark">Bienvenido a Scienflix</h1>
+	   <h2>te interesa la ciencia o quieres plantearte el tema, como una opción para que te motives con el área, el cine es una gran opción. Desde científicos y genios de la invención, viajes espaciales, experimentos, plantas, vida de los animales y robots son los interesantes temas que te mostraremos en esta página.
+    </h2>
+	</div>	
+	
+	<h4 class="text-danger mt-5">Últimas peliculas subidas</h4>
+	
+	<div class="row">
+	    <div class="col-md-3 my-5" th:each="pelicula : ${ultimasPeliculas}" th:object="${pelicula}">
+	       <a th:href="@{/peliculas/{id}(id=*{id})}" class="card shadow-lg" style="text-decoration:none;">
+	       <img th:src="@{/assets/{filename}(filename=*{rutaPortada})}" th:alt="*{titulo}" class="card-img-top">
+	       <div class="card-body">
+	          <h2 class="card-title fs-6" th:text="*{titulo}"></h2>
+	          <p th:text="*{#temporals.format(fechaEstreno,'dd/MM/yyyy')}" class="text-muted small"></p>
+	       </div>
+	       </a>
+	    </div>
+	</div>
+  </div> 
+</body>
